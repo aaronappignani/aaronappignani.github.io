@@ -1,0 +1,238 @@
+/* Color Variables - Light Mode (Default) */
+:root {
+    --bg-color: #F4EBD9;
+    --text-color: #333;
+   /* --header-footer-bg: #7765E3;
+   */
+    --header-footer-bg: #4D685A;
+    --button-bg: #484A47;
+    --post-bg: #fff;
+    --border-color: #ccc;
+    --hover-opacity: 25%;
+  }
+  
+  /*
+   Dark Mode (System Preference) */
+  /*@media (prefers-color-scheme: dark) {
+    :root {
+      --bg-color: #1A1A1A;
+      --text-color: #E0E0E0;
+      --header-footer-bg: #5D4EC7;
+      --button-bg: #3D3F3C;
+      --post-bg: #2D2D2D;
+      --border-color: #444;
+      --hover-opacity: 40%;
+    }
+  }
+    */
+  
+  /* General Styles */
+  body {
+      font-family: 'Courier New', Courier, monospace;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+  }
+  
+  /* Header Styles */
+  header {
+      background: var(--header-footer-bg);
+      color: #fff;
+      padding: 10px 0;
+      text-align: center;
+      position: relative;
+  }
+  
+  header h1 {
+      margin: 0;
+  }
+  
+  nav ul {
+      list-style: none;
+      padding: 0;
+  }
+  
+  nav ul li {
+      display: inline;
+      margin: 0 15px;
+  }
+  
+  nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      transition: opacity 0.3s ease;
+  }
+  
+  nav ul li a:hover {
+      opacity: var(--hover-opacity);
+  }
+  
+  /* Section Styles */
+  .section {
+      padding: 40px 0;
+  }
+  
+  .section h2 {
+      text-align: center;
+      margin-bottom: 20px;
+  }
+  
+  /* About Me Section */
+  .about-content {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+  }
+  
+  .profile-photo {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+  }
+  
+  /* Blog Section */
+  .blog-posts {
+      display: flex;
+      flex-direction: column;
+      gap: 0px;
+  }
+  
+  .post {
+      background: var(--post-bg);
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+  }
+  
+  .post-image {
+      width: 100%;
+      height: auto;
+      border-radius: 5px;
+  }
+  
+  .post-date {
+      color: #777;
+      font-size: 0.9em;
+  }
+  
+  #read-more-btn {
+      padding: 10px 20px;
+      background-color: var(--button-bg);
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 0;
+      transition: background-color 0.3s ease;
+      font-family: 'Courier New', Courier, monospace !important; 
+      
+  }
+  
+  #read-more-btn:hover {
+      background-color: #555;
+  }
+  
+  /* Gallery Section */
+
+    .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+    }
+
+    .gallery-image {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    transition: transform 0.3s ease;
+    }
+
+    .gallery-image:hover {
+    transform: scale(1.02);
+    }
+
+    /* Blur-up effect for lazy loading */
+    .gallery-image.lazyload {
+    filter: blur(5px);
+    transition: filter 0.3s ease;
+    }
+
+    .gallery-image.lazyloaded {
+    filter: blur(0);
+    }
+    /* Cameras Section */
+    .about-equipment {
+        background: var(--post-bg);
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+  
+  /* Contact Section */
+  .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 500px;
+      margin: 0 auto;
+  }
+  
+  .contact-form input, 
+  .contact-form textarea {
+      padding: 10px;
+      border: 1px solid var(--border-color);
+      border-radius: 5px;
+      background-color: var(--post-bg);
+      color: var(--text-color);
+  }
+  
+  .contact-form button {
+      padding: 10px;
+      background: var(--button-bg);
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      font-family: 'Courier New', Courier, monospace !important; 
+  }
+  
+  .contact-form button:hover {
+      background: #555;
+  }
+  
+  /* Footer Styles */
+  footer {
+      background: var(--header-footer-bg);
+      color: #fff;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: 40px;
+  }
+  
+  .email-button {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: var(--header-footer-bg);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: opacity 0.3s ease;
+  }
+  
+  .email-button:hover {
+      opacity: var(--hover-opacity);
+  }
