@@ -1,0 +1,16 @@
+[
+  {
+    "src": "gallery1.webp",
+    "alt": "Sunset over mountains",
+    "width": 1600,
+    "height": 900,
+    "thumb": "thumbs/gallery1.webp"
+  },
+  {
+    "src": "gallery2.webp",
+    "alt": "City skyline at night",
+    "width": 1200,
+    "height": 800,
+    "thumb": "thumbs/gallery2.webp"
+  }
+]
