@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hello! I'm Aaron Appignani</title>
     <link rel="stylesheet" href="styles.css">
+    <!-- JavaScript Files -->
+    <script src="js/blog.js"></script>
+    <script src="js/gallery.js"></script>
+    <script src="js/contact.js"></script>
+    <script src="js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        emailjs.init('nJ8kuXFZ2LehIebtT'); // Initialize with your public key
+    </script>
 </head>
 <body>
     <!-- Header Section -->
@@ -16,7 +25,11 @@
                     <li><a href="#about">About Me</a></li>
                     <li><a href="#blog">Blog</a></li>
                     <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#equipment">Camera Gear</a></li>
                     <li><a href="#contact">Contact</a></li>
+                    <button id="themeToggle" class="theme-toggle" aria-label="Toggle light/dark mode">
+                    <span class="theme-icon">🌓</span>
+                    </button>
                 </ul>
             </nav>
         </div>
@@ -39,161 +52,77 @@
     <section id="blog" class="section">
         <div class="container">
             <h2>Blog</h2>
-            <div class="blog-posts">
-                <!-- Blog Post 1 -->
+            <div class="blog-posts" id="blog-container">
+                <!-- Posts will be sorted and managed by JavaScript -->
                 <article class="post">
                     <h3>Blog Post Title 1</h3>
-                    <p class="post-date">Posted on June 11, 2025.</p>
-                    <img src="blog-image1.jpg" alt="Blog Image 1" class="post-image">
-                    <p>This is the content of your first blog post. You can write about anything you like here!</p>
+                    <p class="post-date">Posted on June 12, 2025.</p>
+                    <img src="/home/aaron/Documents/myWebsite/aaronappignani.github.io/assets/gallery/DSCF0554.JPG" alt="Blog Image 1" class="post-image">
+                    <p>This is the content of your first blog post.</p>
                 </article>
-
-     <!-- Read More Button -->
-     <button id="read-more-btn">Read More</button>
+                <article class="post">
+                    <h3>Blog Post Title 2</h3>
+                    <p class="post-date">Posted on June 11, 2025.</p>
+                    <img src="blog-image2.jpg" alt="Blog Image 2" class="post-image">
+                    <p>This is the content of your second blog post.</p>
+                </article>
+                <article class="post">
+                    <h3>Blog Post Title 3</h3>
+                    <p class="post-date">Posted on June 10, 2025.</p>
+                    <img src="blog-image3.jpg" alt="Blog Image 3" class="post-image">
+                    <p>This is another older blog post.</p>
+                </article>
+                <article class="post">
+                    <h3>Blog Post Title 4</h3>
+                    <p class="post-date">Posted on June 9, 2025.</p>
+                    <img src="/home/aaron/Documents/myWebsite/aaronappignani.github.io/assets/gallery/DSCF0632.JPG" alt="Blog Image 4" class="post-image" loading="lazy">
+                    <p>This is an even older blog post.</p>
+                </article>
+            </div>
+            
+            <!-- Button Container -->
+            <div class="button-container">
+                <button id="read-less-btn" class="blog-btn read-less-btn" style="display: none;">
+                    Read Less
+                </button>
+                <button id="read-more-btn" class="blog-btn read-more-btn">
+                    Read More
+                </button>
+            </div>
+        </div>
+    </section>
 
     <!-- Gallery Section -->
     <section id="gallery" class="section">
         <div class="container">
             <h2>Gallery</h2>
             <div class="gallery-grid">
-            <!-- Images will be loaded here dynamically -->
+                <!-- Images will be loaded here dynamically -->
             </div>
         </div>
+
+    <!-- The Modal -->
+    <div id="galleryModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="modalImage">
+        <div id="caption"></div>
+    </div>
     </section>
 
-    <!-- Lazy loading script -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-        const gallery = document.querySelector('.gallery-grid');
-        
-        fetch('/_data/gallery.json')
-            .then(response => response.json())
-            .then(images => {
-            images.forEach(img => {
-                const imgWrapper = document.createElement('div');
-                imgWrapper.className = 'gallery-item';
-                
-                imgWrapper.innerHTML = `
-                <img 
-                    src="/assets/${img.thumb}" 
-                    data-src="/assets/gallery/${img.src}" 
-                    alt="${img.alt}"
-                    loading="lazy"
-                    width="${img.width}"
-                    height="${img.height}"
-                    class="gallery-image lazyload"
-                >
-                <noscript>
-                    <img src="/assets/gallery/${img.src}" alt="${img.alt}">
-                </noscript>
-                `;
-                
-                gallery.appendChild(imgWrapper);
-            });
-            
-            // Lazy load images when in viewport
-            if ('IntersectionObserver' in window) {
-                const lazyImages = document.querySelectorAll('.lazyload');
-                const imageObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                    const img = entry.target;
-                    img.src = img.dataset.src;
-                    img.classList.remove('lazyload');
-                    imageObserver.unobserve(img);
-                    }
-                });
-                });
-                
-                lazyImages.forEach(img => imageObserver.observe(img));
-            }
-            });
-        });
-    </script>
-    <!-- Without JavaScript-->
-    <noscript>
-    <style>
-        .gallery-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        }
-        .lazyload { display: none; }
-    </style>
-    </noscript>
-
-    <!-- My Cameras --><!--
+    <!-- Equipment Section -->
     <section id="equipment" class="section">
         <div class="container">
             <h2>My Cameras</h2>
             <div class="about-equipment">
-                <p>
-                    This section is dedicated to the cameras and other equipment I use.
-                </p>
-                <img src="olympusfilmcam.jpg" alt="Olympus Infinity Zoom 70" class="profile-photo">
-                <p>
-                    This is my Olympus Infinity Zoom 70, which really kick-started my desire to pursue photography as my primary hobby/interest. Easily the best eBay purchase of my life.
-                    This camera has a decently sharp lens compared to most film cameras of the time, and really excels when shooting black-and-white, or really low ISO film.
-                    I typically use this for vacations or trips out of the town I live in, where the extra cost of film is justified.
-                </p>
-                <h2>
-
-                </h2>
-                <img src="canonDigicam.jpg" alt="Canon PowerShot SX120IS" class="profile-photo">
-                <p>
-                    This is my Canon PowerShot SX120IS. I bought it for $40 from a rich lady in Greenpoint in February of 2024.
-                    I use this camera for video recording mostly -- it gives off that Emma Chamberlain "recorded in 4x3 and kinda grainy" vibe.
-                    I sometimes use the microphone on this, since it actually works pretty well at getting that vintage camcorder style mic.
-                </p>
-                <h2>
-
-                </h2>
-                </p>
-                <img src="fujifilmDigicam.jpg" alt="Fujifilm FinePix A340" class="profile-photo">
-                <p>
-                    This is my Fujifilm FinePix A340. I bought this from a guy in Astoria who was in the process of retiring and becoming a snowbird. I hope he's doing well!
-                    This is my "daily driver" camera of sorts -- If I'm randomly snapping a picture, it's probably with this camera.
-                    I personally LOVE the saturated colors and the slightly cloudy/blurry vibe that it gives off.
-                    Unfortunately, this doesn't take video at all.
-                </p>
-                <h2>
-
-                </h2>
-                </p>
-                <img src="polaroidCamera.jpg" alt="Polaroid Now+" class="profile-photo">
-                <p>
-                    My aunt gave me this Polaroid for Christmas of 2022! It works well, but isn't something that I use very often.
-                    Polaroid film is just so expensive for the volume of shots you get to work with, especially compared to digital or even roll film.
-                </p>
-                <h2>
-                    
-                </h2>
-                </p>
-                <img src="fujifilmInstax.jpg" alt="FujiFilm Instax" class="profile-photo">
-                <p>
-                    This camera is my fiance's, but I use it pretty often too! This is typically just used for capturing nice dinners in the house, and things like that.
-                </p>
-                <img src="RodeMic.jpg" alt="Rode NT-USB Mini" class="profile-photo">
-                <p>
-                    I have had this microphone for years, and it works very well! I typically use it for recording any kind of voice-over stuff - even though my voice kind of sucks.
-                </p>
-                <h2>
-            </div>
-        </div>
-    </section>
--->
-
-    <section id="equipment" class="section">
-    <div class="container">
-        <h2>My Cameras</h2>
-        <div class="about-equipment">
+                
         <div class="camera-card">
+            <div class="camera-image">
             <img 
-                src="/assets/thumbs/olympusfilmcam.webp" 
-                data-src="/assets/cameras/olympusfilmcam.webp" 
+                src="assets/cameras/OlympusInfinityZoom70.JPEG" 
                 alt="Olympus Infinity Zoom 70" 
-                loading="lazy"
-                class="lazyload"
+                class="camera-image"
             >
+            </div>
             <h3>Olympus Infinity Zoom 70</h3>
             <p>
                     This is my Olympus Infinity Zoom 70, which really kick-started my desire to pursue photography as my primary hobby/interest. Easily the best eBay purchase of my life.
@@ -202,13 +131,13 @@
             </p>
         </div>
         <div class="camera-card">
+            <div class="camera-image">
             <img 
-                src="/assets/thumbs/olympusfilmcam.webp" 
-                data-src="/assets/cameras/olympusfilmcam.webp" 
+                src="/home/aaron/Documents/myWebsite/aaronappignani.github.io/assets/cameras/CanonSX120IS.JPEG" 
                 alt="Canon PowerShot SX120IS" 
-                loading="lazy"
-                class="lazyload"
+                class="camera-image"
             >
+            </div>
             <h3>Canon PowerShot SX120IS</h3>
             <p>
                 This is my Canon PowerShot SX120IS. I bought it for $40 from a rich lady in Greenpoint in February of 2024.
@@ -217,13 +146,13 @@
             </p>
         </div>
         <div class="camera-card">
-            <img 
-                src="/assets/thumbs/olympusfilmcam.webp" 
-                data-src="/assets/cameras/olympusfilmcam.webp" 
+            <div class="camera-image">
+            <img
+                src="/home/aaron/Documents/myWebsite/aaronappignani.github.io/assets/cameras/fujifilmA340.JPG" 
                 alt="FujiFilm FinePix A340" 
-                loading="lazy"
-                class="lazyload"
+                class="camera-image"
             >
+            </div>
             <h3>FujiFilm FinePix A340</h3>
             <p>
                 This is my Fujifilm FinePix A340. I bought this from a guy in Astoria who was in the process of retiring and becoming a snowbird. I hope he's doing well!
@@ -233,28 +162,42 @@
             </p>
         </div>
         <div class="camera-card">
+            <div class="camera-image">
             <img 
-                src="/assets/thumbs/olympusfilmcam.webp" 
-                data-src="/assets/cameras/olympusfilmcam.webp" 
+                src="/home/aaron/Documents/myWebsite/aaronappignani.github.io/assets/cameras/PolaroidNow+.JPEG" 
                 alt="Polaroid Now+" 
-                loading="lazy"
-                class="lazyload"
+                class="camera-image"
             >
+            </div>
             <h3>Polaroid Now+</h3>
             <p>
                 My aunt gave me this Polaroid for Christmas of 2022! It works well, but isn't something that I use very often.
-                Polaroid film is just so expensive for the volume of shots you get to work with, especially compared to digital or even roll film.
+                Polaroid film is just so expensive for the volume of shots you get to work with, especially compared to digital or even regular 35mm roll film.
             </p>
         </div>
         <div class="camera-card">
+            <div class="camera-image">
             <img 
-                src="/assets/thumbs/olympusfilmcam.webp" 
-                data-src="/assets/cameras/olympusfilmcam.webp" 
+                src="/assets/cameras/olympusfilmcam.webp" 
                 alt="FujiFilm Instax" 
-                loading="lazy"
-                class="lazyload"
+                class="camera-image"
             >
+            </div>
             <h3>FujiFilm Instax</h3>
+            <p>
+                This camera is my fiance's, but I use it pretty often too! This is typically just used for capturing nice dinners in the house, and things like that.
+            </p>
+        </div>
+    
+                <div class="camera-card">
+            <div class="camera-image">
+            <img 
+                src="/home/aaron/Documents/myWebsite/aaronappignani.github.io/assets/cameras/OlympusFE-170.JPEG" 
+                alt="Olympus FE-170" 
+                class="camera-image"
+            >
+            </div>
+            <h3>Olympus FE-170</h3>
             <p>
                 This camera is my fiance's, but I use it pretty often too! This is typically just used for capturing nice dinners in the house, and things like that.
             </p>
@@ -266,7 +209,7 @@
     <section id="contact" class="section">
         <div class="container">
             <h2>Contact Me</h2>
-            <form action="#" method="post" class="contact-form">
+            <form id="contactForm" class="contact-form">
                 <label for="name">Name:</label>
                 <input type="text" id="name" name="name" required>
 
@@ -276,34 +219,24 @@
                 <label for="message">Message:</label>
                 <textarea id="message" name="message" rows="5" required></textarea>
 
-                <button type="submit">Send Message</button>
+                <button type="submit" id="submitBtn">Send Message</button>
+                <p id="formStatus"></p>
             </form>
         </div>
     </section>
+
+    <!-- Add EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
     <!-- Footer -->
     <footer>
         <div class="container">
             <p>&copy; 2025 Aaron Appignani. All rights reserved.</p>
-            <p> Do whatever, just credit me if you use my stuff!</p>
+            <p>Do whatever, just credit me if you use my stuff!</p>
             <a href="mailto:aaronappignani@gmail.com" class="email-button">aaronappignani@gmail.com</a>
-            <a href="https://www.instagram.com/yourusername/" class="email-button" target="_blank">@aaronspaghetti</a>
-            <a href="https://www.youtube.com/mychannel/" class="email-button" target="_blank">@aaronappignani</a>
+            <a href="https://www.instagram.com/aaronspaghetti/" class="email-button" target="_blank">@aaronspaghetti</a>
+            <a href="https://www.youtube.com/@AaronAppignani" class="email-button" target="_blank">@aaronappignani</a>
         </div>
     </footer>
-
-    <script>
-        document.getElementById('read-more-btn').addEventListener('click', function() {
-            var morePosts = document.getElementById('more-posts');
-            if (morePosts.style.display === 'none') {
-                morePosts.style.display = 'block';
-                this.textContent = 'Show Less';
-            } else {
-                morePosts.style.display = 'none';
-                this.textContent = 'Read More';
-            }
-        });
-    </script>
-    
 </body>
 </html>
