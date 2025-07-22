@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
         imgWrapper.className = 'gallery-item';
         imgWrapper.innerHTML = `
             <img 
-                src="/home/aaron/Documents/myWebsite/aaronappignani.github.io/assets/gallery/${img.filename}" 
+                src="/assets/gallery/${img.filename}" 
                 alt="${img.alt}" 
                 width="600" 
                 height="400" 
