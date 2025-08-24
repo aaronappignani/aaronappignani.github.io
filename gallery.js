@@ -1,92 +1,101 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const gallery = document.querySelector('.gallery-grid');
-    if (!gallery) return;
+            const gallery = document.querySelector('.gallery-grid');
+            if (!gallery) {
+                console.error('Gallery element not found!');
+                return;
+            }
 
-    // 1. Define your image filenames (edit these to match your actual files)
-    const galleryImages = [
-        { filename: 'galleryPhoto1', alt: 'Sunset at the beach' },
-        { filename: 'galleryPhoto2', alt: 'Sunset at the beach' },
-        { filename: 'galleryPhoto3', alt: 'Sunset at the beach' },
-        { filename: 'galleryPhoto04', alt: 'Sunset at the beach' },
-        { filename: 'galleryPhoto05', alt: 'Sunset at the beach' },
-        { filename: 'galleryPhoto06', alt: 'Sunset at the beach' },
-        { filename: 'galleryPhoto07', alt: 'Sunset at the beach' },
-        { filename: 'galleryPhoto11', alt: 'Sunset at the beach' },
-        { filename: 'galleryPhoto19', alt: 'Sunset at the beach' },
-        { filename: 'galleryPhoto21', alt: 'Sunset at the beach' },
-        { filename: 'galleryPhoto24', alt: 'Sunset at the beach' },
-        { filename: 'galleryPhoto27', alt: 'Sunset at the beach' },
-        { filename: 'galleryPhoto29', alt: 'Sunset at the beach' },
-        { filename: 'galleryPhoto32', alt: 'Sunset at the beach' },
-        { filename: 'galleryPhoto33', alt: 'Sunset at the beach' },
-        { filename: 'galleryPhoto35', alt: 'Sunset at the beach' },
-        { filename: 'galleryPhoto37', alt: 'Sunset at the beach' },
-        { filename: 'galleryPhoto38', alt: 'Sunset at the beach' },
-        { filename: 'galleryPhoto40', alt: 'Sunset at the beach' },
-        { filename: 'galleryPhoto45', alt: 'Sunset at the beach' },
-        { filename: 'galleryPhoto46', alt: 'Sunset at the beach' },
-        { filename: 'galleryPhoto47', alt: 'Sunset at the beach' },
-        { filename: 'galleryPhoto48', alt: 'Sunset at the beach' },
-        { filename: 'galleryPhoto54', alt: 'Sunset at the beach' },
-        { filename: 'galleryPhoto55', alt: 'Sunset at the beach' },
-        { filename: 'galleryPhoto58', alt: 'Sunset at the beach' },
-        { filename: 'galleryPhoto77', alt: 'Sunset at the beach' },
-        { filename: 'galleryPhoto78', alt: 'Sunset at the beach' },
-        { filename: 'galleryPhoto79', alt: 'Sunset at the beach' },
-        { filename: 'galleryPhoto95', alt: 'Sunset at the beach' },
-        { filename: 'galleryPhoto97', alt: 'Sunset at the beach' },                                                                             
-        
-        // Add more as needed...
-    ];
+            // Define your image filenames
+            const galleryImages = [
+                { filename: 'galleryPhoto1', alt: 'Sunset at the beach' },
+                { filename: 'galleryPhoto2', alt: 'Sunset at the beach' },
+                { filename: 'galleryPhoto3', alt: 'Sunset at the beach' },
+                { filename: 'galleryPhoto04', alt: 'Sunset at the beach' },
+                { filename: 'galleryPhoto05', alt: 'Sunset at the beach' },
+                { filename: 'galleryPhoto06', alt: 'Sunset at the beach' },
+                { filename: 'galleryPhoto07', alt: 'Sunset at the beach' },
+                { filename: 'galleryPhoto11', alt: 'Sunset at the beach' },
+                { filename: 'galleryPhoto19', alt: 'Sunset at the beach' },
+                { filename: 'galleryPhoto21', alt: 'Sunset at the beach' },
+                { filename: 'galleryPhoto24', alt: 'Sunset at the beach' },
+                { filename: 'galleryPhoto27', alt: 'Sunset at the beach' },
+                { filename: 'galleryPhoto29', alt: 'Sunset at the beach' },
+                { filename: 'galleryPhoto32', alt: 'Sunset at the beach' },
+                { filename: 'galleryPhoto33', alt: 'Sunset at the beach' },
+                { filename: 'galleryPhoto35', alt: 'Sunset at the beach' },
+                { filename: 'galleryPhoto37', alt: 'Sunset at the beach' },
+                { filename: 'galleryPhoto38', alt: 'Sunset at the beach' },
+                { filename: 'galleryPhoto40', alt: 'Sunset at the beach' },
+                { filename: 'galleryPhoto45', alt: 'Sunset at the beach' },
+                { filename: 'galleryPhoto46', alt: 'Sunset at the beach' },
+                { filename: 'galleryPhoto47', alt: 'Sunset at the beach' },
+                { filename: 'galleryPhoto48', alt: 'Sunset at the beach' },
+                { filename: 'galleryPhoto54', alt: 'Sunset at the beach' },
+                { filename: 'galleryPhoto55', alt: 'Sunset at the beach' },
+                { filename: 'galleryPhoto58', alt: 'Sunset at the beach' },
+                { filename: 'galleryPhoto77', alt: 'Sunset at the beach' },
+                { filename: 'galleryPhoto78', alt: 'Sunset at the beach' },
+                { filename: 'galleryPhoto79', alt: 'Sunset at the beach' },
+                { filename: 'galleryPhoto95', alt: 'Sunset at the beach' },
+                { filename: 'galleryPhoto97', alt: 'Sunset at the beach' },                                                                             
+            ];
 
-    // 2. Generate HTML for each image
-    galleryImages.forEach(img => {
-        const imgWrapper = document.createElement('div');
-        imgWrapper.className = 'gallery-item';
-        imgWrapper.innerHTML = `
-            <img 
-                src="/assets/gallery/${img.filename}" 
-                alt="${img.alt}" 
-                width="600" 
-                height="400" 
-                class="gallery-image"
-                loading = "lazy"
-            >
-        `;
-        gallery.appendChild(imgWrapper);
-    });
+            // Generate HTML for each image
+            galleryImages.forEach(img => {
+                const imgWrapper = document.createElement('div');
+                imgWrapper.className = 'gallery-item';
+                
+                // Create image element with error handling
+                const image = document.createElement('img');
+                image.src = `assets/gallery/${img.filename}.jpg`; // Using relative path
+                image.alt = img.alt;
+                image.className = 'gallery-image';
+                image.loading = 'lazy';
+                
+                // Add error handling
+                image.onerror = function() {
+                    this.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="200" viewBox="0 0 300 200"><rect width="100%" height="100%" fill="%233498db"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="16" fill="white">Image not found: ' + img.filename + '</text></svg>';
+                    console.error(`Image failed to load: ${img.filename}`);
+                };
+                
+                imgWrapper.appendChild(image);
+                gallery.appendChild(imgWrapper);
+            });
 
-     // Modal functionality
-    const modal = document.getElementById("galleryModal");
-    const modalImg = document.getElementById("modalImage");
-    const captionText = document.getElementById("caption");
-    const closeBtn = document.querySelector(".close");
+            // Modal functionality
+            const modal = document.getElementById("galleryModal");
+            const modalImg = document.getElementById("modalImage");
+            const captionText = document.getElementById("caption");
+            const closeBtn = document.querySelector(".close");
 
-    // Add click event to all gallery images
-    document.querySelectorAll('.gallery-image').forEach(img => {
-        img.addEventListener('click', function() {
-            modal.style.display = "block";
-            modalImg.src = this.src;
-            captionText.innerHTML = this.alt;
+            // Add click event to all gallery images
+            gallery.addEventListener('click', function(e) {
+                if (e.target.classList.contains('gallery-image')) {
+                    modal.style.display = "block";
+                    modalImg.src = e.target.src;
+                    captionText.innerHTML = e.target.alt;
+                }
+            });
+
+            // Close modal when X is clicked
+            closeBtn.addEventListener('click', function() {
+                modal.style.display = "none";
+            });
+
+            // Close modal when clicking outside the image
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.style.display = "none";
+                }
+            });
+
+            // Close modal with ESC key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === "Escape" && modal.style.display === "block") {
+                    modal.style.display = "none";
+                }
+            });
         });
-    });
-
-    // Close modal when X is clicked
-    closeBtn.addEventListener('click', function() {
-        modal.style.display = "none";
-    });
-
-  // Close modal when clicking outside the image
-    modal.addEventListener('click', function(e) {
-        if (e.target === modal) {
-            modal.style.display = "none";
-        }
-    });
-
-    // Close modal with ESC key
-    document.addEventListener('keydown', function(e) {
-        if (e.key === "Escape" && modal.style.display === "block") {
-            modal.style.display = "none";
-        }
-    });
-});
+    </script>
+</body>
+</html>
