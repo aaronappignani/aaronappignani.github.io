@@ -155,6 +155,7 @@ html {
       height: 150px;
       border-radius: 50%;
       object-fit: cover;
+      rotate: -90deg;
   }
   
   /* Blog Section */
@@ -397,3 +398,4 @@ html {
   .email-button:hover {
       opacity: var(--hover-opacity);
   }
+  

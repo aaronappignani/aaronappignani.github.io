@@ -4,11 +4,38 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 1. Define your image filenames (edit these to match your actual files)
     const galleryImages = [
-        { filename: 'DSCF0554.JPG', alt: 'Sunset at the beach' },
-        { filename: 'DSCF0555.JPG', alt: 'Mountains in winter' },
-        { filename: 'DSCF0606.JPG', alt: 'City skyline at night' },
-        { filename: 'DSCF0632.JPG', alt: 'City skyline at night' },
-        { filename: 'DSCF0647.JPG', alt: 'City skyline at night' },
+        { filename: 'galleryPhoto1', alt: 'Sunset at the beach' },
+        { filename: 'galleryPhoto2', alt: 'Sunset at the beach' },
+        { filename: 'galleryPhoto3', alt: 'Sunset at the beach' },
+        { filename: 'galleryPhoto04', alt: 'Sunset at the beach' },
+        { filename: 'galleryPhoto05', alt: 'Sunset at the beach' },
+        { filename: 'galleryPhoto06', alt: 'Sunset at the beach' },
+        { filename: 'galleryPhoto07', alt: 'Sunset at the beach' },
+        { filename: 'galleryPhoto11', alt: 'Sunset at the beach' },
+        { filename: 'galleryPhoto19', alt: 'Sunset at the beach' },
+        { filename: 'galleryPhoto21', alt: 'Sunset at the beach' },
+        { filename: 'galleryPhoto24', alt: 'Sunset at the beach' },
+        { filename: 'galleryPhoto27', alt: 'Sunset at the beach' },
+        { filename: 'galleryPhoto29', alt: 'Sunset at the beach' },
+        { filename: 'galleryPhoto32', alt: 'Sunset at the beach' },
+        { filename: 'galleryPhoto33', alt: 'Sunset at the beach' },
+        { filename: 'galleryPhoto35', alt: 'Sunset at the beach' },
+        { filename: 'galleryPhoto37', alt: 'Sunset at the beach' },
+        { filename: 'galleryPhoto38', alt: 'Sunset at the beach' },
+        { filename: 'galleryPhoto40', alt: 'Sunset at the beach' },
+        { filename: 'galleryPhoto45', alt: 'Sunset at the beach' },
+        { filename: 'galleryPhoto46', alt: 'Sunset at the beach' },
+        { filename: 'galleryPhoto47', alt: 'Sunset at the beach' },
+        { filename: 'galleryPhoto48', alt: 'Sunset at the beach' },
+        { filename: 'galleryPhoto54', alt: 'Sunset at the beach' },
+        { filename: 'galleryPhoto55', alt: 'Sunset at the beach' },
+        { filename: 'galleryPhoto58', alt: 'Sunset at the beach' },
+        { filename: 'galleryPhoto77', alt: 'Sunset at the beach' },
+        { filename: 'galleryPhoto78', alt: 'Sunset at the beach' },
+        { filename: 'galleryPhoto79', alt: 'Sunset at the beach' },
+        { filename: 'galleryPhoto95', alt: 'Sunset at the beach' },
+        { filename: 'galleryPhoto97', alt: 'Sunset at the beach' },                                                                             
+        
         // Add more as needed...
     ];
 
@@ -18,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
         imgWrapper.className = 'gallery-item';
         imgWrapper.innerHTML = `
             <img 
-                src="/assets/gallery/${img.filename}" 
+                src="/home/aaron/Documents/myWebsite/aaronappignani.github.io/assets/gallery/${img.filename}" 
                 alt="${img.alt}" 
                 width="600" 
                 height="400" 
